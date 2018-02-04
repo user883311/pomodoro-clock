@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Pomodoro Clock</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
@@ -11,52 +12,50 @@
         <button>themes</button>
     </div>
     <div class="central-container">
-        <div></div>
-        <button class="plusBtn">+</button>
-        <div></div>
-        <button class="plusBtn">+</button>
-        <div></div>
-        <div></div>
-        <span class="activity">work</span>
-        <span class="minutes">25</span>
-        <span class="twoDots">:</span>
-        <span class="seconds">00</span>
-        <button class="startBtn" >Start/Resume</button>
-        <button class="stopBtn">Stop/Reset</button>
-        <div></div>
-        <button class="minusBtn">-</button>
-        <div></div>
-        <button class="minusBtn">-</button>
-        <div></div>
-        <div></div>
+        <div class="container1">
+            <div></div>
+            <button class="plusBtn">+</button>
+            <div></div>
+            <button class="plusBtn">+</button>
+            <div></div>
+            <div></div>
+            <span class="activity">work</span>
+            <span class="time minutes" id="work-minute">25</span>
+            <span class="time twoDots">:</span>
+            <span class="time seconds" id="work-seconds">00</span>
+            <button class="startBtn">Start/Resume</button>
+            <button class="stopBtn">Stop/Reset</button>
+            <div></div>
+            <button class="minusBtn">-</button>
+            <div></div>
+            <button class="minusBtn">-</button>
+            <div></div>
+            <div></div>
+        </div>
         <!-- separator -->
-        <div>-</div>
-        <div>-</div>
-        <div>-</div>
-        <div>-</div>
-        <div>-</div>
-        <div>-</div>
-        <!-- separator -->
+        <div class="container2">
+            <div></div>
+            <button class="plusBtn">+</button>
+            <div></div>
+            <button class="plusBtn">+</button>
+            <div></div>
+            <div></div>
+            <span class="activity">break</span>
+            <span class="time minutes" id="break-minutes">05</span>
+            <span class="time twoDots">:</span>
+            <span class="time seconds" id="break-seconds">00</span>
+            <!-- <div></div>
+            <div></div> -->
+            <button class="startBtn invisible">Start/Resume</button>
+            <button class="stopBtn invisible">Stop/Reset</button>
+            <div></div>
+            <button class="minusBtn">-</button>
+            <div></div>
+            <button class="minusBtn">-</button>
+            <div></div>
+            <div></div>
+        </div>
 
-
-        <div></div>
-        <button class="plusBtn">+</button>
-        <div></div>
-        <button class="plusBtn">+</button>
-        <div></div>
-        <div></div>
-        <span class="activity">break</span>
-        <span class="minutes">05</span>
-        <span class="twoDots">:</span>
-        <span class="seconds">00</span>
-        <button class="startBtn" >Start/Resume</button>
-        <button class="stopBtn">Stop/Reset</button>
-        <div></div>
-        <button class="minusBtn">-</button>
-        <div></div>
-        <button class="minusBtn">-</button>
-        <div></div>
-        <div></div>
     </div>
     </div>
 
