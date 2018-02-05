@@ -6,15 +6,26 @@ var elapsing = false;
 var workSecondsID = "work-seconds";
 var workMinutesID = "work-minutes";
 var breakSecondsID = "break-seconds";
-var breakSecondsID = "break-seconds";
+var breakMinutesID = "break-minutes";
+var active = "work"; // work/break
 
 function start() {
     /*
     This function renders elapsing time on the work & break clocks, 
     whichever is applicable. 
     */
-    setInterval(elapsesWorkTime(workMinutesID, workSecondsID), 1000);
-    function elapsesWorkTime(minutesIDstr, secondsIDstr) {
+    let timer = setInterval(elapsesTime, 1000);
+
+    function elapsesTime() {
+        if (active == "work") {
+            minutesIDstr = workMinutesID;
+            secondsIDstr = workSecondsID;
+        }
+        else if (active == "break") {
+            minutesIDstr = breakMinutesID;
+            secondsIDstr = breakSecondsID;
+        }
+
         console.log(minutesIDstr, secondsIDstr);
         let seconds = document.getElementById(secondsIDstr).textContent;
         let minutes = document.getElementById(minutesIDstr).textContent;
@@ -22,7 +33,13 @@ function start() {
 
         if (seconds == 0) {
             if (minutes == 0) {
-                // setInterval(elapsesBreakTime, 1000);
+                if (active == "work") {
+                    active = "break";
+                }
+                else if (active == "break") {
+                    alert("rrriiiIIIIIIIIINNGG !!");
+                    clearTimeout(timer);
+                }
             }
             else {
                 seconds = 59;
@@ -33,7 +50,7 @@ function start() {
         }
         else {
             seconds--;
-            
+
             if (seconds < 10) {
                 document.getElementById(secondsIDstr).textContent = "0" + seconds;
             }
