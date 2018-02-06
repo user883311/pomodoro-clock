@@ -1,12 +1,3 @@
-// All time durations are expressed in seconds. 
-
-
-
-function addZeroToSingleDigitStr(str) {
-    result = (str.length == 1) ? "0" + str : str;
-    return result;
-}
-
 var workSecondsID = "work-seconds";
 var workMinutesID = "work-minutes";
 var breakSecondsID = "break-seconds";
@@ -15,18 +6,18 @@ var active = "work"; // work/break
 var status = "reset"; // reset/elapsing/paused
 var timer;
 
-var defaultDuration = 0 * 60 + 5, defaultBreakDuration = 0 * 60 + 5;
+// All time durations are expressed in seconds. 
+var defaultWorkDuration = 0 * 60 + 5, defaultBreakDuration = 0 * 60 + 5;
 
 stopReset()
 function stopReset() {
     status = "reset";
     clearInterval(timer);
-    document.getElementById("work-minutes").innerHTML = Math.floor(defaultDuration / 60).toString();
-    document.getElementById("work-seconds").innerHTML = addZeroToSingleDigitStr((defaultDuration % 60).toString());
-    document.getElementById("break-minutes").innerHTML = Math.floor(defaultBreakDuration / 60).toString();
-    document.getElementById("break-seconds").innerHTML = addZeroToSingleDigitStr((defaultBreakDuration % 60).toString());
+    document.getElementById("work-minutes").textContent = addZeroToSingleDigitStr(Math.floor(defaultWorkDuration / 60).toString());
+    document.getElementById("work-seconds").textContent = addZeroToSingleDigitStr((defaultWorkDuration % 60).toString());
+    document.getElementById("break-minutes").textContent = addZeroToSingleDigitStr(Math.floor(defaultBreakDuration / 60).toString());
+    document.getElementById("break-seconds").textContent = addZeroToSingleDigitStr((defaultBreakDuration % 60).toString());
 }
-
 
 function startPause() {
     /*
@@ -96,8 +87,51 @@ function startPause() {
     }
 }
 
+function add(htmlElementID) {
+    /*This function adds +1 unit to the HTML value inside the 
+    HTML element. */
 
+    let result = document.getElementById(htmlElementID).textContent;
 
+    // control for seconds max 59
+    if (htmlElementID == workSecondsID || htmlElementID == breakSecondsID) {
+        if (result == 59) {
+            result = 0;
+        }
+        else { result++ }
+    }
+    else { result++; }
+    result = addZeroToSingleDigitStr(result.toString());
+    document.getElementById(htmlElementID).textContent = result;
+
+    //reset
+    defaultWorkDuration = document.getElementById(workMinutesID).textContent * 60
+        + document.getElementById(workSecondsID).textContent;
+    defaultBreakDuration = document.getElementById(breakMinutesID).textContent * 60
+        + document.getElementById(breakSecondsID).textContent;
+}
+function subtract(htmlElementID) {
+    /*This function subracts +1 unit to the HTML value inside the 
+    HTML element. */
+    let elementValue = document.getElementById(htmlElementID).textContent;
+    if (elementValue != 0) {
+        let result = elementValue;
+        result--;
+        result = addZeroToSingleDigitStr(result.toString());
+        document.getElementById(htmlElementID).textContent = result;
+
+        //reset
+        defaultWorkDuration = document.getElementById(workMinutesID).textContent * 60
+            + document.getElementById(workSecondsID).textContent;
+        defaultBreakDuration = document.getElementById(breakMinutesID).textContent * 60
+            + document.getElementById(breakSecondsID).textContent;
+    }
+}
+
+function addZeroToSingleDigitStr(str) {
+    result = (str.length == 1) ? "0" + str : str;
+    return result;
+}
 
 // When work time is elapsing, Start/Resume and Stop/Reset buttons are active on that side. 
 // and +/- buttons are active on break time side
