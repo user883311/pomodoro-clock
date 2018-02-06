@@ -23,8 +23,8 @@
             <span class="time minutes" id="work-minutes">00</span>
             <span class="time twoDots">:</span>
             <span class="time seconds" id="work-seconds">20</span>
-            <button class="startBtn" onclick="startPause()">Start/Resume</button>
-            <button class="stopBtn">Stop/Reset</button>
+            <button class="startBtn" id="startWorktimeBtn" onclick="startPause()">Start/Resume</button>
+            <button class="stopBtn" id="resetWorktimeBtn" onclick="stopReset()">Stop & Reset</button>
             <div></div>
             <button class="minusBtn">-</button>
             <div></div>
@@ -46,8 +46,8 @@
             <span class="time seconds" id="break-seconds">05</span>
             <!-- <div></div>
             <div></div> -->
-            <button class="startBtn invisible">Start/Resume</button>
-            <button class="stopBtn invisible">Stop/Reset</button>
+            <button class="startBtn invisible" id="startBreaktimeBtn" onclick="startPause()">Start/Resume</button>
+            <button class="stopBtn invisible" id="resetBreaktimeBtn" onclick="stopReset()">Stop & Reset</button>
             <div></div>
             <button class="minusBtn">-</button>
             <div></div>

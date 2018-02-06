@@ -1,7 +1,11 @@
 // All time durations are expressed in seconds. 
 
-var defaultDuration = 25 * 60, defaultBreakDuration = 5 * 60;
-var elapsing = false;
+
+
+function addZeroToSingleDigitStr(str) {
+    result = (str.length == 1) ? "0" + str : str;
+    return result;
+}
 
 var workSecondsID = "work-seconds";
 var workMinutesID = "work-minutes";
@@ -9,9 +13,21 @@ var breakSecondsID = "break-seconds";
 var breakMinutesID = "break-minutes";
 var active = "work"; // work/break
 var status = "reset"; // reset/elapsing/paused
-
-
 var timer;
+
+var defaultDuration = 0 * 60 + 5, defaultBreakDuration = 0 * 60 + 5;
+
+stopReset()
+function stopReset() {
+    status = "reset";
+    clearInterval(timer);
+    document.getElementById("work-minutes").innerHTML = Math.floor(defaultDuration / 60).toString();
+    document.getElementById("work-seconds").innerHTML = addZeroToSingleDigitStr((defaultDuration % 60).toString());
+    document.getElementById("break-minutes").innerHTML = Math.floor(defaultBreakDuration / 60).toString();
+    document.getElementById("break-seconds").innerHTML = addZeroToSingleDigitStr((defaultBreakDuration % 60).toString());
+}
+
+
 function startPause() {
     /*
     This function renders elapsing time on the work & break clocks, 
@@ -20,6 +36,9 @@ function startPause() {
     console.log("calling startPause()...");
     if (status == "reset" || status == "paused") {
         status = "elapsing";
+        // When time is elapsing, + and - buttons are inactive. 
+        // xxxxxxxxx
+
         timer = setInterval(elapsesTime, 1000);
     }
     else if (status == "elapsing") {
@@ -48,6 +67,14 @@ function startPause() {
             if (minutes == 0) {
                 if (active == "work") {
                     active = "break";
+                    // When break time is elapsing, Start/Resume and Stop/Reset buttons are active on that side. 
+                    // and +/- buttons are active on work time side
+                    document.getElementById("startBreaktimeBtn").classList.remove("invisible");
+                    document.getElementById("resetBreaktimeBtn").classList.remove("invisible");
+                    document.getElementById("startWorktimeBtn").classList.add("invisible");
+                    document.getElementById("resetWorktimeBtn").classList.add("invisible");
+
+                    // xxxxxxxx
                 }
                 else if (active == "break") {
                     alert("rrriiiIIIIIIIIINNGG !!");
@@ -63,22 +90,18 @@ function startPause() {
         }
         else {
             seconds--;
-            if (seconds < 10) {
-                document.getElementById(secondsIDstr).textContent = "0" + seconds;
-            }
-            else {
-                document.getElementById(secondsIDstr).textContent = seconds;
-            }
+            document.getElementById(secondsIDstr).textContent = addZeroToSingleDigitStr(seconds.toString());
         }
         console.log(seconds);
     }
 }
 
-// When time is elapsing, + and - buttons are inactive. 
+
+
 
 // When work time is elapsing, Start/Resume and Stop/Reset buttons are active on that side. 
+// and +/- buttons are active on break time side
 
-// When break time is elapsing, Start/Resume and Stop/Reset buttons are active on that side. 
-
+// xxxxxxxx
 
 
