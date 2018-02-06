@@ -8,15 +8,28 @@ var workMinutesID = "work-minutes";
 var breakSecondsID = "break-seconds";
 var breakMinutesID = "break-minutes";
 var active = "work"; // work/break
+var status = "reset"; // reset/elapsing/paused
 
-function start() {
+
+var timer;
+function startPause() {
     /*
     This function renders elapsing time on the work & break clocks, 
     whichever is applicable. 
     */
-    let timer = setInterval(elapsesTime, 1000);
+    console.log("calling startPause()...");
+    if (status == "reset" || status == "paused") {
+        status = "elapsing";
+        timer = setInterval(elapsesTime, 1000);
+    }
+    else if (status == "elapsing") {
+        status = "paused";
+        clearInterval(timer);
+        console.log("clearInterval");
+    }
 
     function elapsesTime() {
+        console.log("status =", status);
         if (active == "work") {
             minutesIDstr = workMinutesID;
             secondsIDstr = workSecondsID;
@@ -38,7 +51,7 @@ function start() {
                 }
                 else if (active == "break") {
                     alert("rrriiiIIIIIIIIINNGG !!");
-                    clearTimeout(timer);
+                    clearInterval(timer);
                 }
             }
             else {
@@ -50,7 +63,6 @@ function start() {
         }
         else {
             seconds--;
-
             if (seconds < 10) {
                 document.getElementById(secondsIDstr).textContent = "0" + seconds;
             }
@@ -60,10 +72,7 @@ function start() {
         }
         console.log(seconds);
     }
-
 }
-
-
 
 // When time is elapsing, + and - buttons are inactive. 
 
