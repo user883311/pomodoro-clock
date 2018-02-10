@@ -1,22 +1,56 @@
+// HTML elements values:
 var workSecondsID = "work-seconds";
 var workMinutesID = "work-minutes";
 var breakSecondsID = "break-seconds";
 var breakMinutesID = "break-minutes";
+
 var active = "work"; // work/break
 var status = "reset"; // reset/elapsing/paused
 var timer;
+var resetCount = 0; // 0, 1, 2
 
-// All time durations are expressed in seconds. 
+// Note: all time durations are expressed in seconds. 
+// This should be adjustable in Settings in the future. 
 var defaultWorkDuration = 0 * 60 + 5, defaultBreakDuration = 0 * 60 + 5;
 
-stopReset()
+// Initialize timer values. 
+stopReset();
+resetCount = 0;
 function stopReset() {
     status = "reset";
     clearInterval(timer);
-    document.getElementById("work-minutes").textContent = addZeroToSingleDigitStr(Math.floor(defaultWorkDuration / 60).toString());
-    document.getElementById("work-seconds").textContent = addZeroToSingleDigitStr((defaultWorkDuration % 60).toString());
-    document.getElementById("break-minutes").textContent = addZeroToSingleDigitStr(Math.floor(defaultBreakDuration / 60).toString());
-    document.getElementById("break-seconds").textContent = addZeroToSingleDigitStr((defaultBreakDuration % 60).toString());
+    // Reset current activity timers to their default values. 
+    if (active == "work") {
+        resetTimer("work");
+        resetTimer("break");
+    }
+    else if (active == "break") {
+        resetCount++;
+        resetTimer("break");
+    }
+    // if pressed for the 2nd time, reset both activity timers to their default values
+    if (resetCount == 2) {
+        resetTimer("work");
+        resetTimer("break");
+        // and set active activity back to work
+        active = "work";
+        document.getElementById("startBreaktimeBtn").classList.add("invisible");
+        document.getElementById("resetBreaktimeBtn").classList.add("invisible");
+        document.getElementById("startWorktimeBtn").classList.remove("invisible");
+        document.getElementById("resetWorktimeBtn").classList.remove("invisible");
+        resetCount = 0;
+    }
+}
+
+function resetTimer(activityID) {
+    if (activityID == "work") {
+        document.getElementById(workMinutesID).textContent = addZeroToSingleDigitStr(Math.floor(defaultWorkDuration / 60).toString());
+        document.getElementById(workSecondsID).textContent = addZeroToSingleDigitStr((defaultWorkDuration % 60).toString());
+    }
+    else if (activityID = "break") {
+        document.getElementById(breakMinutesID).textContent = addZeroToSingleDigitStr(Math.floor(defaultBreakDuration / 60).toString());
+        document.getElementById(breakSecondsID).textContent = addZeroToSingleDigitStr((defaultBreakDuration % 60).toString());
+    }
 }
 
 function startPause() {
@@ -132,10 +166,3 @@ function addZeroToSingleDigitStr(str) {
     result = (str.length == 1) ? "0" + str : str;
     return result;
 }
-
-// When work time is elapsing, Start/Resume and Stop/Reset buttons are active on that side. 
-// and +/- buttons are active on break time side
-
-// xxxxxxxx
-
-
