@@ -7,8 +7,8 @@ var breakMinutesID = "break-minutes";
 var active = "work"; // work/break
 var status = "reset"; // reset/elapsing/paused
 var timer;
-var statusPct = 0 / 100;
 var resetCount = 0; // 0, 1, 2
+var statusPct = 0 / 100;
 
 // Note: all time durations are expressed in seconds. 
 // This should be adjustable in Settings in the future. 
@@ -24,10 +24,12 @@ function stopReset() {
     if (active == "work") {
         resetTimer("work");
         resetTimer("break");
+        enableButtons("work");
     }
     else if (active == "break") {
         resetCount++;
         resetTimer("break");
+        enableButtons("break");
     }
     // if pressed for the 2nd time, reset both activity timers to their default values
     if (resetCount == 2) {
@@ -40,6 +42,9 @@ function stopReset() {
         document.getElementById("startWorktimeBtn").classList.remove("invisible");
         document.getElementById("resetWorktimeBtn").classList.remove("invisible");
         resetCount = 0;
+        enableButtons("work");
+        enableButtons("break");
+
     }
 }
 
@@ -63,14 +68,13 @@ function startPause() {
     let total; // total number of break or work duration
     if (status == "reset" || status == "paused") {
         status = "elapsing";
-        // When time is elapsing, + and - buttons are inactive. 
-        // xxxxxxxxx
-
+        disableButtons(active);
         timer = setInterval(elapsesTime, 1000);
     }
     else if (status == "elapsing") {
         status = "paused";
-        clearInterval(timer);
+        enableButtons(active);
+        clearInterval(timer);   
         console.log("clearInterval");
     }
 
@@ -80,11 +84,19 @@ function startPause() {
             minutesIDstr = workMinutesID;
             secondsIDstr = workSecondsID;
             total = defaultWorkDuration;
+
+            // When time is elapsing, + and - buttons are inactive. 
+            disableButtons("work");
+            enableButtons("break");
         }
         else if (active == "break") {
             minutesIDstr = breakMinutesID;
             secondsIDstr = breakSecondsID;
             total = defaultBreakDuration;
+
+            disableButtons("break");
+            enableButtons("work");
+
         }
 
         console.log(minutesIDstr, secondsIDstr);
@@ -92,10 +104,16 @@ function startPause() {
         let minutes = document.getElementById(minutesIDstr).textContent;
         console.log(minutes, seconds);
 
-        if (seconds == 0) {
+        if (seconds == 1) {
+            seconds--;
+            document.getElementById(secondsIDstr).textContent = addZeroToSingleDigitStr(seconds.toString());
+
             if (minutes == 0) {
                 if (active == "work") {
                     active = "break";
+                    disableButtons(active);
+                    enableButtons("work");
+
                     // When break time is elapsing, Start/Resume and Stop/Reset buttons are active on that side. 
                     // and +/- buttons are active on work time side
                     document.getElementById("startBreaktimeBtn").classList.remove("invisible");
@@ -174,4 +192,22 @@ function subtract(htmlElementID) {
 function addZeroToSingleDigitStr(str) {
     result = (str.length == 1) ? "0" + str : str;
     return result;
+}
+
+function disableButtons(activityStr) {
+    let arr = document.getElementsByClassName(activityStr + " plusBtn");
+    arr[0].disabled = true;
+    arr[1].disabled = true;
+    arr = document.getElementsByClassName(activityStr + " minusBtn");
+    arr[0].disabled = true;
+    arr[1].disabled = true;
+}
+
+function enableButtons(activityStr) {
+    let arr = document.getElementsByClassName(activityStr + " plusBtn");
+    arr[0].disabled = false;
+    arr[1].disabled = false;
+    arr = document.getElementsByClassName(activityStr + " minusBtn");
+    arr[0].disabled = false;
+    arr[1].disabled = false;
 }
