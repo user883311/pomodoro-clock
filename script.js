@@ -7,6 +7,7 @@ var breakMinutesID = "break-minutes";
 var active = "work"; // work/break
 var status = "reset"; // reset/elapsing/paused
 var timer;
+var statusPct = 0 / 100;
 var resetCount = 0; // 0, 1, 2
 
 // Note: all time durations are expressed in seconds. 
@@ -59,6 +60,7 @@ function startPause() {
     whichever is applicable. 
     */
     console.log("calling startPause()...");
+    let total; // total number of break or work duration
     if (status == "reset" || status == "paused") {
         status = "elapsing";
         // When time is elapsing, + and - buttons are inactive. 
@@ -77,10 +79,12 @@ function startPause() {
         if (active == "work") {
             minutesIDstr = workMinutesID;
             secondsIDstr = workSecondsID;
+            total = defaultWorkDuration;
         }
         else if (active == "break") {
             minutesIDstr = breakMinutesID;
             secondsIDstr = breakSecondsID;
+            total = defaultBreakDuration;
         }
 
         console.log(minutesIDstr, secondsIDstr);
@@ -118,6 +122,11 @@ function startPause() {
             document.getElementById(secondsIDstr).textContent = addZeroToSingleDigitStr(seconds.toString());
         }
         console.log(seconds);
+
+        // update %
+        console.log("minutes", minutes, "seconds", seconds, "total", total);
+        statusPct = 1 - (minutes * 60 + seconds) / total;
+        console.log("statusPct", statusPct);
     }
 }
 
@@ -139,10 +148,10 @@ function add(htmlElementID) {
     document.getElementById(htmlElementID).textContent = result;
 
     //reset
-    defaultWorkDuration = document.getElementById(workMinutesID).textContent * 60
-        + document.getElementById(workSecondsID).textContent;
-    defaultBreakDuration = document.getElementById(breakMinutesID).textContent * 60
-        + document.getElementById(breakSecondsID).textContent;
+    defaultWorkDuration = parseInt(document.getElementById(workMinutesID).textContent) * 60
+        + parseInt(document.getElementById(workSecondsID).textContent);
+    defaultBreakDuration = parseInt(document.getElementById(breakMinutesID).textContent) * 60
+        + parseInt(document.getElementById(breakSecondsID).textContent);
 }
 function subtract(htmlElementID) {
     /*This function subracts +1 unit to the HTML value inside the 
@@ -155,10 +164,10 @@ function subtract(htmlElementID) {
         document.getElementById(htmlElementID).textContent = result;
 
         //reset
-        defaultWorkDuration = document.getElementById(workMinutesID).textContent * 60
-            + document.getElementById(workSecondsID).textContent;
-        defaultBreakDuration = document.getElementById(breakMinutesID).textContent * 60
-            + document.getElementById(breakSecondsID).textContent;
+        defaultWorkDuration = parseInt(document.getElementById(workMinutesID).textContent) * 60
+            + parseInt(document.getElementById(workSecondsID).textContent);
+        defaultBreakDuration = parseInt(document.getElementById(breakMinutesID).textContent) * 60
+            + parseInt(document.getElementById(breakSecondsID).textContent);
     }
 }
 
