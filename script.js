@@ -74,7 +74,7 @@ function startPause() {
     else if (status == "elapsing") {
         status = "paused";
         enableButtons(active);
-        clearInterval(timer);   
+        clearInterval(timer);
         console.log("clearInterval");
     }
 
@@ -121,7 +121,8 @@ function startPause() {
                     document.getElementById("startWorktimeBtn").classList.add("invisible");
                     document.getElementById("resetWorktimeBtn").classList.add("invisible");
 
-                    // xxxxxxxx
+                    // reset background canvas
+                    
                 }
                 else if (active == "break") {
                     alert("rrriiiIIIIIIIIINNGG !!");
@@ -145,6 +146,7 @@ function startPause() {
         console.log("minutes", minutes, "seconds", seconds, "total", total);
         statusPct = 1 - (minutes * 60 + seconds) / total;
         console.log("statusPct", statusPct);
+        draw(); 
     }
 }
 
@@ -210,4 +212,17 @@ function enableButtons(activityStr) {
     arr = document.getElementsByClassName(activityStr + " minusBtn");
     arr[0].disabled = false;
     arr[1].disabled = false;
+}
+
+var canvas = document.getElementById('background-canvas');
+function draw() {
+    if (canvas.getContext) {
+        console.log("canvas loaded.")
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'rgb(200, 0, 0, 0.5)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height*statusPct);
+
+        // ctx.fillStyle = 'rgba(0, 0, 200, 0.5)';
+        // ctx.fillRect(30, 30, 50, 50);
+    }
 }
