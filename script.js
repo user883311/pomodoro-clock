@@ -6,7 +6,7 @@ var breakMinutesID = "break-minutes";
 
 var active = "work"; // work/break
 var status = "reset"; // reset/elapsing/paused
-var timer;
+var timer, timer2;
 var resetCount = 0; // 0, 1, 2
 var statusPct = 0 / 100;
 
@@ -96,7 +96,6 @@ function startPause() {
 
             disableButtons("break");
             enableButtons("work");
-
         }
 
         console.log(minutesIDstr, secondsIDstr);
@@ -122,7 +121,7 @@ function startPause() {
                     document.getElementById("resetWorktimeBtn").classList.add("invisible");
 
                     // reset background canvas
-                    
+
                 }
                 else if (active == "break") {
                     alert("rrriiiIIIIIIIIINNGG !!");
@@ -146,7 +145,7 @@ function startPause() {
         console.log("minutes", minutes, "seconds", seconds, "total", total);
         statusPct = 1 - (minutes * 60 + seconds) / total;
         console.log("statusPct", statusPct);
-        draw(); 
+        // draw();
     }
 }
 
@@ -214,15 +213,22 @@ function enableButtons(activityStr) {
     arr[1].disabled = false;
 }
 
+
 var canvas = document.getElementById('background-canvas');
+var timer2;
 function draw() {
     if (canvas.getContext) {
         console.log("canvas loaded.")
         var ctx = canvas.getContext('2d');
         ctx.fillStyle = 'rgb(200, 0, 0, 0.5)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height*statusPct);
+        ctx.fillRect(0, 0, canvas.width, canvas.height * statusPct);
 
-        // ctx.fillStyle = 'rgba(0, 0, 200, 0.5)';
-        // ctx.fillRect(30, 30, 50, 50);
+        timer2 = setInterval(dropCurtain, 10);
+
+        function dropCurtain(){
+
+        }
+
     }
 }
+
