@@ -9,3 +9,7 @@ User Story:
 - I can customize the length of each pomodoro.
 
 Source: https://www.freecodecamp.org/challenges/build-a-pomodoro-clock
+
+Idea for CSS animation: 
+- drop a curtain
+- raindrops fill a water tank
