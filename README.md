@@ -13,3 +13,5 @@ Source: https://www.freecodecamp.org/challenges/build-a-pomodoro-clock
 Idea for CSS animation: 
 - drop a curtain
 - raindrops fill a water tank
+
+Notes: I need a single threaded timer to run these several tasks. 
