@@ -25,7 +25,7 @@ resetCount = 0;
 function stopReset() {
     status = "reset";
     clearInterval(timer);
-    clearInterval(timer2);
+    // clearInterval(timer2);
     resetBackgroundCanvas();
     // Reset current activity timers to their default values. 
     if (active == "work") {
@@ -159,8 +159,6 @@ function startPause() {
             // console.log("minutes", minutes, "seconds", seconds, "total", total);
             statusPct = 1 - (minutes * 60 + seconds) / total;
             // console.log("statusPct", statusPct);
-            // console.log(timer);
-            // draw();
         }
 
         // now for the curtain.... 
@@ -190,9 +188,9 @@ function add(htmlElementID) {
 
     //reset
     defaultWorkDuration = parseInt(document.getElementById(workMinutesID).textContent) * 60000
-        + parseInt(document.getElementById(workSecondsID).textContent);
+        + parseInt(document.getElementById(workSecondsID).textContent)*1000;
     defaultBreakDuration = parseInt(document.getElementById(breakMinutesID).textContent) * 60000
-        + parseInt(document.getElementById(breakSecondsID).textContent);
+        + parseInt(document.getElementById(breakSecondsID).textContent)*1000;
 
     // reset canvas
     resetBackgroundCanvas();
@@ -241,17 +239,6 @@ function enableButtons(activityStr) {
     arr[1].disabled = false;
 }
 
-
-function draw() {
-    if (canvas.getContext) {
-        // console.log("canvas loaded.")
-        var ctx = canvas.getContext('2d');
-        ctx.fillStyle = 'rgb(200, 0, 0, 1)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height * statusPct);
-    }
-}
-
-
 function dropCurtain() {
     let total;
     if (active == "work") {
@@ -271,9 +258,9 @@ function dropCurtain() {
     // }
 
     if (canvas.getContext) {
-        console.log("DropCurtain() loaded.")
+        // console.log("DropCurtain() loaded.")
         var ctx = canvas.getContext('2d');
-        ctx.fillStyle = 'rgb(200, 0, 0, 1)';
+        ctx.fillStyle = 'black';
         ctx.fillRect(0, 0, canvas.width, canvas.height * curtainProgress);
     }
 }

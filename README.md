@@ -14,4 +14,7 @@ Idea for CSS animation:
 - drop a curtain
 - raindrops fill a water tank
 
-Notes: I need a single threaded timer to run these several tasks. 
+Notes: I needed a single threaded timer to run these several tasks. 
+
+Tickets: 
+- curtain doesn't reset properly after using +/ - buttons 

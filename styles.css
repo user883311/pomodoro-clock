@@ -1,9 +1,14 @@
+* {
+    font-family: Silom;
+}
+
 body {
     height: 100%;
     width: 100%;
 }
 
 #background-canvas {
+    background-color: #086213;
     position: absolute;
     top:0;
     left:0;
@@ -20,7 +25,7 @@ body {
 
 .central-container{
     padding: 5px;
-    background-color: yellow;
+    background-color: grey;
     grid-column: 2; 
     grid-row: 2;
     display: grid;
@@ -32,7 +37,7 @@ body {
     padding: 5px;
     background-color: green;
     display: grid;
-    grid-template-columns: 40px repeat(5, auto);
+    grid-template-columns: 60px repeat(5, auto);
     justify-items: center;
     align-items: center;
 }
@@ -40,12 +45,13 @@ body {
     padding: 5px;
     background-color: brown;
     display: grid;
-    grid-template-columns: 40px repeat(5, auto);
+    grid-template-columns: 60px repeat(5, auto);
     justify-items: center;
     align-items: center;
 }
 
 button {
+
 }
 
 .invisible {
