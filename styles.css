@@ -1,5 +1,18 @@
+@font-face {
+    font-family: 'Sosa';
+    src: url('fonts/sosa/sosa-regular-webfont.ttf') format('ttf'),
+    url('fonts/sosa/sosa-regular-webfont.eot') format('eot'),
+    url('fonts/sosa/sosa-regular-webfont.svg') format('svg'),
+    url('fonts/sosa/sosa-regular-webfont.woff') format('woff');
+    /* Source: http://tenbytwenty.com/?xxxx_posts=sosa */
+}
+
 * {
     font-family: Silom;
+}
+
+html{
+    background-color: #086213;
 }
 
 body {
@@ -8,7 +21,6 @@ body {
 }
 
 #background-canvas {
-    background-color: #086213;
     position: absolute;
     top:0;
     left:0;
@@ -50,8 +62,8 @@ body {
     align-items: center;
 }
 
-button {
-
+button.startBtn, .stopBtn, .minusBtn, .plusBtn {
+    font-family: Sosa, Silom;
 }
 
 .invisible {

@@ -27,6 +27,12 @@ function stopReset() {
     clearInterval(timer);
     // clearInterval(timer2);
     resetBackgroundCanvas();
+
+
+    let arrStartBtn = document.getElementsByClassName("startBtn");
+    arrStartBtn[0].textContent = "N";
+    arrStartBtn[1].textContent = "N";
+
     // Reset current activity timers to their default values. 
     if (active == "work") {
         resetTimer("work");
@@ -77,6 +83,9 @@ function startPause() {
         disableButtons(active);
         timer = setInterval(elapsesTime, timerPace);
         // timer2 = setInterval(dropCurtain, curtainPace); 
+        let arrStartBtn = document.getElementsByClassName("startBtn");
+        arrStartBtn[0].textContent = "O";
+        arrStartBtn[1].textContent = "O";
     }
     else if (status == "elapsing") {
         status = "paused";
@@ -84,6 +93,9 @@ function startPause() {
         clearInterval(timer);
         // clearInterval(timer2);
         // console.log("clearInterval");
+        let arrStartBtn = document.getElementsByClassName("startBtn");
+        arrStartBtn[0].textContent = "N";
+        arrStartBtn[1].textContent = "N";
     }
 
     function elapsesTime() {

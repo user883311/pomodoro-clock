@@ -14,30 +14,30 @@
     <div class="central-container">
         <div class="container1">
             <div></div>
-            <button class="work plusBtn" onclick="add('work-minutes')">+</button>
+            <button class="work plusBtn" onclick="add('work-minutes')">{</button>
             <div></div>
-            <button class="work plusBtn" onclick="add('work-seconds')">+</button>
+            <button class="work plusBtn" onclick="add('work-seconds')">{</button>
             <div></div>
             <div></div>
             <span class="activity">work</span>
             <span class="time minutes" id="work-minutes"></span>
             <span class="time twoDots">:</span>
             <span class="time seconds" id="work-seconds"></span>
-            <button class="startBtn" id="startWorktimeBtn" onclick="startPause()">Play & Pause</button>
-            <button class="stopBtn" id="resetWorktimeBtn" onclick="stopReset()">Stop & Reset</button>
+            <button class="startBtn" id="startWorktimeBtn" onclick="startPause()">N</button>
+            <button class="stopBtn" id="resetWorktimeBtn" onclick="stopReset()">P</button>
             <div></div>
-            <button class="work minusBtn" onclick="subtract('work-minutes')">-</button>
+            <button class="work minusBtn" onclick="subtract('work-minutes')">|</button>
             <div></div>
-            <button class="work minusBtn" onclick="subtract('work-seconds')">-</button>
+            <button class="work minusBtn" onclick="subtract('work-seconds')">|</button>
             <div></div>
             <div></div>
         </div>
         <!-- separator -->
         <div class="container2">
             <div></div>
-            <button class="break plusBtn" onclick="add('break-minutes')">+</button>
+            <button class="break plusBtn" onclick="add('break-minutes')">{</button>
             <div></div>
-            <button class="break plusBtn" onclick="add('break-seconds')">+</button>
+            <button class="break plusBtn" onclick="add('break-seconds')">{</button>
             <div></div>
             <div></div>
             <span class="activity">break</span>
@@ -46,12 +46,12 @@
             <span class="time seconds" id="break-seconds"></span>
             <!-- <div></div>
             <div></div> -->
-            <button class="startBtn invisible" id="startBreaktimeBtn" onclick="startPause()">Play & Pause</button>
-            <button class="stopBtn invisible" id="resetBreaktimeBtn" onclick="stopReset()">Stop & Reset</button>
+            <button class="startBtn invisible" id="startBreaktimeBtn" onclick="startPause()">N</button>
+            <button class="stopBtn invisible" id="resetBreaktimeBtn" onclick="stopReset()">P</button>
             <div></div>
-            <button class="break minusBtn" onclick="subtract('break-minutes')">-</button>
+            <button class="break minusBtn" onclick="subtract('break-minutes')">|</button>
             <div></div>
-            <button class="break minusBtn" onclick="subtract('break-seconds')">-</button>
+            <button class="break minusBtn" onclick="subtract('break-seconds')">|</button>
             <div></div>
             <div></div>
         </div>
@@ -60,7 +60,7 @@
     </div>
 
     <canvas id="background-canvas"></canvas>
-
+    
     <script type="text/javascript" src="script.js"></script>
 </body>
 
