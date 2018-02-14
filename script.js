@@ -46,6 +46,7 @@ function stopReset() {
     }
     // if pressed for the 2nd time, reset both activity timers to their default values
     if (resetCount == 2) {
+
         resetTimer("work");
         resetTimer("break");
         // and set active activity back to work
@@ -57,6 +58,9 @@ function stopReset() {
         resetCount = 0;
         enableButtons("work");
         enableButtons("break");
+
+        document.getElementsByClassName("container2")[0].classList.remove("activeContainer");
+        document.getElementsByClassName("container1")[0].classList.add("activeContainer");
     }
 }
 
@@ -108,7 +112,8 @@ function startPause() {
                 minutesIDstr = workMinutesID;
                 secondsIDstr = workSecondsID;
                 total = defaultWorkDuration;
-
+                document.getElementsByClassName("container2")[0].classList.remove("activeContainer");
+                document.getElementsByClassName("container1")[0].classList.add("activeContainer");
                 // When time is elapsing, + and - buttons are inactive. 
                 disableButtons("work");
                 enableButtons("break");
@@ -117,7 +122,7 @@ function startPause() {
                 minutesIDstr = breakMinutesID;
                 secondsIDstr = breakSecondsID;
                 total = defaultBreakDuration;
-
+                
                 disableButtons("break");
                 enableButtons("work");
             }
@@ -137,6 +142,10 @@ function startPause() {
                         disableButtons(active);
                         enableButtons("work");
 
+                        document.getElementsByClassName("container1")[0].classList.remove("activeContainer");
+                        document.getElementsByClassName("container2")[0].classList.add("activeContainer");
+        
+
                         // When break time is elapsing, Start/Resume and Stop/Reset buttons are active on that side. 
                         // and +/- buttons are active on work time side
                         document.getElementById("startBreaktimeBtn").classList.remove("invisible");
@@ -146,6 +155,8 @@ function startPause() {
 
                         // reset background canvas
                         resetBackgroundCanvas();
+
+
 
                     }
                     else if (active == "break") {
@@ -272,7 +283,7 @@ function dropCurtain() {
     if (canvas.getContext) {
         // console.log("DropCurtain() loaded.")
         var ctx = canvas.getContext('2d');
-        ctx.fillStyle = 'black';
+        ctx.fillStyle = 'rgb(172, 206, 168)';
         ctx.fillRect(0, 0, canvas.width, canvas.height * curtainProgress);
     }
 }

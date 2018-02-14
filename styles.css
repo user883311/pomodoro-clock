@@ -1,9 +1,9 @@
 @font-face {
     font-family: 'Sosa';
-    src: url('fonts/sosa/sosa-regular-webfont.ttf') format('ttf'),
-    url('fonts/sosa/sosa-regular-webfont.eot') format('eot'),
-    url('fonts/sosa/sosa-regular-webfont.svg') format('svg'),
-    url('fonts/sosa/sosa-regular-webfont.woff') format('woff');
+    src: url('fonts/sosa/sosa-regular-webfont.ttf') format('ttf'), /* Safari, Android, iOS */
+    url('fonts/sosa/sosa-regular-webfont.eot') format('eot'), /* IE9 Compat Modes */
+    url('fonts/sosa/sosa-regular-webfont.svg') format('svg'), /* Legacy iOS */
+    url('fonts/sosa/sosa-regular-webfont.woff') format('woff'); /* Pretty Modern Browsers */
     /* Source: http://tenbytwenty.com/?xxxx_posts=sosa */
 }
 
@@ -12,7 +12,7 @@
 }
 
 html{
-    background-color: #086213;
+    background-color: rgb(30,30,30);
 }
 
 body {
@@ -36,30 +36,28 @@ body {
 }
 
 .central-container{
-    padding: 5px;
-    background-color: grey;
+    padding: 3px;
+    background-color:rgb(193,193,193);
     grid-column: 2; 
     grid-row: 2;
     display: grid;
     justify-items: center;
     align-items: center;
+    grid-row-gap: 3px;
 }
 
-.container1 {
-    padding: 5px;
-    background-color: green;
+.container1, .container2 {
+    padding: 3px;   
     display: grid;
     grid-template-columns: 60px repeat(5, auto);
     justify-items: center;
     align-items: center;
+    background-color: grey;
 }
-.container2 {
-    padding: 5px;
-    background-color: brown;
-    display: grid;
-    grid-template-columns: 60px repeat(5, auto);
-    justify-items: center;
-    align-items: center;
+
+.activeContainer {
+    background-color: rgb(42,42,46);
+    color: rgb(215, 186, 118);
 }
 
 button.startBtn, .stopBtn, .minusBtn, .plusBtn {
@@ -69,3 +67,4 @@ button.startBtn, .stopBtn, .minusBtn, .plusBtn {
 .invisible {
     visibility: hidden;
 }
+
