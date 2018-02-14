@@ -57,7 +57,7 @@ body {
 
 .activeContainer {
     background-color: rgb(42,42,46);
-    color: rgb(215, 186, 118);
+    color: rgb(206, 140, 85);
 }
 
 button.startBtn, .stopBtn, .minusBtn, .plusBtn {
