@@ -1,5 +1,5 @@
 # pomodoro-clock
-a freecodecamp project
+## a freecodecamp project
 
 Objective: Build a CodePen.io app that is functionally similar to this: https://codepen.io/FreeCodeCamp/full/aNyxXR/.
 
@@ -15,9 +15,6 @@ Idea for CSS animation:
 - raindrops fill a water tank
 
 Notes: I needed a single threaded timer to run these several tasks. 
-
-Tickets: 
-- curtain doesn't reset properly after using +/ - buttons 
 
 GitHub Page: https://user883311.github.io/pomodoro-clock/
 

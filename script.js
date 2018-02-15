@@ -19,6 +19,9 @@ var curtainPace = 20;
 var displayWorkDuration = 0 * 60 + 5, displayBreakDuration = 0 * 60 + 5;
 var defaultWorkDuration = displayWorkDuration * 1000, defaultBreakDuration = displayBreakDuration * 1000;
 
+var boxingBell = new Audio("sounds/boxing-bell.wav"); // buffers automatically when created
+var backToWork = new Audio("sounds/backToWork.wav"); // buffers automatically when created
+
 // Initialize timer values. 
 stopReset();
 resetCount = 0;
@@ -138,6 +141,7 @@ function startPause() {
 
                 if (minutes == 0) {
                     if (active == "work") {
+                        boxingBell.play();
                         active = "break";
                         disableButtons(active);
                         enableButtons("work");
@@ -160,7 +164,8 @@ function startPause() {
 
                     }
                     else if (active == "break") {
-                        alert("rrriiiIIIIIIIIINNGG !!");
+                        boxingBell.play();
+                        backToWork.play();
                         clearInterval(timer);
                         clearInterval(timer2);
                     }
