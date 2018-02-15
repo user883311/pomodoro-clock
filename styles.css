@@ -4,7 +4,7 @@
     url('fonts/sosa/sosa-regular-webfont.eot') format('eot'), /* IE9 Compat Modes */
     url('fonts/sosa/sosa-regular-webfont.svg') format('svg'), /* Legacy iOS */
     url('fonts/sosa/sosa-regular-webfont.woff') format('woff'); /* Pretty Modern Browsers */
-    /* Source: http://tenbytwenty.com/?xxxx_posts=sosa */
+    /* Credits / source : TenByTwenty, http://tenbytwenty.com/?xxxx_posts=sosa */
 }
 
 * {
@@ -58,6 +58,15 @@ body {
 .activeContainer {
     background-color: rgb(42,42,46);
     color: rgb(206, 140, 85);
+}   
+
+button {
+    background-color: rgb(193,193,193);
+    margin: 3px;
+}
+
+button:hover{
+    background-color: rgb(155, 153, 153);
 }
 
 button.startBtn, .stopBtn, .minusBtn, .plusBtn {
