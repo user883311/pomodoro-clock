@@ -21,6 +21,7 @@ var defaultWorkDuration = displayWorkDuration * 1000, defaultBreakDuration = dis
 
 var boxingBell = new Audio("sounds/boxing-bell.wav"); // buffers automatically when created
 var backToWork = new Audio("sounds/backToWork.wav"); // buffers automatically when created
+// Sounds source: https://freesound.org/
 
 // Initialize timer values. 
 stopReset();
@@ -46,6 +47,7 @@ function stopReset() {
         resetCount++;
         resetTimer("break");
         enableButtons("break");
+        document.getElementById("resetBreaktimeBtn").textContent = "z";
     }
     // if pressed for the 2nd time, reset both activity timers to their default values
     if (resetCount == 2) {
@@ -64,6 +66,7 @@ function stopReset() {
 
         document.getElementsByClassName("container2")[0].classList.remove("activeContainer");
         document.getElementsByClassName("container1")[0].classList.add("activeContainer");
+        document.getElementById("resetBreaktimeBtn").textContent = "P";
     }
 }
 
