@@ -20,3 +20,5 @@ Tickets:
 - curtain doesn't reset properly after using +/ - buttons 
 
 GitHub Page: https://user883311.github.io/pomodoro-clock/
+
+
