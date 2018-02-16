@@ -19,9 +19,9 @@ var curtainPace = 20;
 var displayWorkDuration = 0 * 60 + 5, displayBreakDuration = 0 * 60 + 5;
 var defaultWorkDuration = displayWorkDuration * 1000, defaultBreakDuration = displayBreakDuration * 1000;
 
+// Sounds source: https://freesound.org/
 var boxingBell = new Audio("sounds/boxing-bell.wav"); // buffers automatically when created
 var backToWork = new Audio("sounds/backToWork.wav"); // buffers automatically when created
-// Sounds source: https://freesound.org/
 
 // Initialize timer values. 
 stopReset();
@@ -141,9 +141,7 @@ function startPause() {
 
                 if (minutes == 0) {
                     if (active == "work") {
-                        // boxingBell.play();
-                        var audio = document.getElementById('boxing-bell');
-                        audio.play();
+                        boxingBell.play();
 
                         active = "break";
                         disableButtons(active);

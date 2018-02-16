@@ -15,7 +15,8 @@ Idea for CSS animations:
 - raindrops fill a water tank
 - add light theme, other colors
 
-Notes: I needed a single threaded timer to run these several tasks. 
+Notes: I used a single-thread timer as a common reference for the several events.
+ 
 
 GitHub Page: https://user883311.github.io/pomodoro-clock/
 
