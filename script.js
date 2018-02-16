@@ -1,4 +1,4 @@
-// HTML elements values:
+// HTML elements IDs:
 var workSecondsID = "work-seconds";
 var workMinutesID = "work-minutes";
 var breakSecondsID = "break-seconds";
@@ -6,7 +6,7 @@ var breakMinutesID = "break-minutes";
 
 var active = "work"; // work/break
 var status = "reset"; // reset/elapsing/paused
-var timer, timer2, timerCounter = 0;
+var timer, timerCounter = 0;
 var canvas = document.getElementById('background-canvas');
 
 var resetCount = 0; // 0, 1, 2
@@ -29,7 +29,6 @@ resetCount = 0;
 function stopReset() {
     status = "reset";
     clearInterval(timer);
-    // clearInterval(timer2);
     resetBackgroundCanvas();
 
 
@@ -92,7 +91,6 @@ function startPause() {
         status = "elapsing";
         disableButtons(active);
         timer = setInterval(elapsesTime, timerPace);
-        // timer2 = setInterval(dropCurtain, curtainPace); 
         let arrStartBtn = document.getElementsByClassName("startBtn");
         arrStartBtn[0].textContent = "O";
         arrStartBtn[1].textContent = "O";
@@ -101,7 +99,6 @@ function startPause() {
         status = "paused";
         enableButtons(active);
         clearInterval(timer);
-        // clearInterval(timer2);
         // console.log("clearInterval");
         let arrStartBtn = document.getElementsByClassName("startBtn");
         arrStartBtn[0].textContent = "N";
@@ -128,7 +125,7 @@ function startPause() {
                 minutesIDstr = breakMinutesID;
                 secondsIDstr = breakSecondsID;
                 total = defaultBreakDuration;
-                
+
                 disableButtons("break");
                 enableButtons("work");
             }
@@ -144,14 +141,16 @@ function startPause() {
 
                 if (minutes == 0) {
                     if (active == "work") {
-                        boxingBell.play();
+                        // boxingBell.play();
+                        var audio = document.getElementById('boxing-bell');
+                        audio.play();
+
                         active = "break";
                         disableButtons(active);
                         enableButtons("work");
 
                         document.getElementsByClassName("container1")[0].classList.remove("activeContainer");
                         document.getElementsByClassName("container2")[0].classList.add("activeContainer");
-        
 
                         // When break time is elapsing, Start/Resume and Stop/Reset buttons are active on that side. 
                         // and +/- buttons are active on work time side
@@ -162,15 +161,11 @@ function startPause() {
 
                         // reset background canvas
                         resetBackgroundCanvas();
-
-
-
                     }
                     else if (active == "break") {
                         boxingBell.play();
                         backToWork.play();
                         clearInterval(timer);
-                        clearInterval(timer2);
                     }
                 }
                 else {
@@ -184,20 +179,12 @@ function startPause() {
                 seconds--;
                 document.getElementById(secondsIDstr).textContent = addZeroToSingleDigitStr(seconds.toString());
             }
-            // console.log(seconds);
-
-            // update %
             // console.log("minutes", minutes, "seconds", seconds, "total", total);
             statusPct = 1 - (minutes * 60 + seconds) / total;
             // console.log("statusPct", statusPct);
         }
-
-        // now for the curtain.... 
         dropCurtain();
     }
-
-
-
 }
 
 function add(htmlElementID) {
@@ -218,19 +205,18 @@ function add(htmlElementID) {
 
     //reset
     defaultWorkDuration = parseInt(document.getElementById(workMinutesID).textContent) * 60000
-        + parseInt(document.getElementById(workSecondsID).textContent)*1000;
+        + parseInt(document.getElementById(workSecondsID).textContent) * 1000;
     defaultBreakDuration = parseInt(document.getElementById(breakMinutesID).textContent) * 60000
-        + parseInt(document.getElementById(breakSecondsID).textContent)*1000;
+        + parseInt(document.getElementById(breakSecondsID).textContent) * 1000;
 
     // reset canvas
     resetBackgroundCanvas();
 }
 function subtract(htmlElementID) {
-    /*This function subracts +1 unit to the HTML value inside the 
-    HTML element. */
+    // This function subracts +1 unit to the HTML value inside the HTML element. 
     let elementValue = document.getElementById(htmlElementID).textContent;
-    console.log((/minut/.test(htmlElementID) &&  elementValue != 0) );
-    if ((/minut/.test(htmlElementID) &&  elementValue != 0) || (/secon/.test(htmlElementID) &&  elementValue != 1)) {
+    console.log((/minut/.test(htmlElementID) && elementValue != 0));
+    if ((/minut/.test(htmlElementID) && elementValue != 0) || (/secon/.test(htmlElementID) && elementValue != 1)) {
         let result = elementValue;
         result--;
         result = addZeroToSingleDigitStr(result.toString());
@@ -238,11 +224,10 @@ function subtract(htmlElementID) {
 
         //reset
         defaultWorkDuration = parseInt(document.getElementById(workMinutesID).textContent) * 60000
-            + parseInt(document.getElementById(workSecondsID).textContent)*1000;
+            + parseInt(document.getElementById(workSecondsID).textContent) * 1000;
         defaultBreakDuration = parseInt(document.getElementById(breakMinutesID).textContent) * 60000
-            + parseInt(document.getElementById(breakSecondsID).textContent)*1000;
+            + parseInt(document.getElementById(breakSecondsID).textContent) * 1000;
 
-        // reset canvas
         resetBackgroundCanvas();
     }
 }
@@ -283,11 +268,6 @@ function dropCurtain() {
     let curtainProgress = curtainMeter / total;
     console.log(curtainProgress);
 
-    // reset background canvas
-    // if (curtainProgress >= 1) {
-    //     resetBackgroundCanvas();
-    // }
-
     if (canvas.getContext) {
         // console.log("DropCurtain() loaded.")
         var ctx = canvas.getContext('2d');
@@ -298,7 +278,6 @@ function dropCurtain() {
 
 function resetBackgroundCanvas() {
     if (canvas.getContext) {
-        console.log("clearing the canvas...")
         var ctx = canvas.getContext('2d');
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }

@@ -1,7 +1,7 @@
 # pomodoro-clock
 ## a freecodecamp project
 
-Objective: Build a CodePen.io app that is functionally similar to this: https://codepen.io/FreeCodeCamp/full/aNyxXR/.
+Objective: Build a website app that is functionally similar to this: https://codepen.io/FreeCodeCamp/full/aNyxXR/.
 
 User Story: 
 - I can start a 25 minute pomodoro, and the timer will go off once 25 minutes has elapsed.
