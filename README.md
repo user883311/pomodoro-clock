@@ -10,9 +10,10 @@ User Story:
 
 Source: https://www.freecodecamp.org/challenges/build-a-pomodoro-clock
 
-Idea for CSS animation: 
+Idea for CSS animations: 
 - drop a curtain
 - raindrops fill a water tank
+- add light theme, other colors
 
 Notes: I needed a single threaded timer to run these several tasks. 
 

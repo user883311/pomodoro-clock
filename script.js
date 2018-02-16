@@ -203,7 +203,6 @@ function startPause() {
 function add(htmlElementID) {
     /*This function adds +1 unit to the HTML value inside the 
     HTML element. */
-
     let result = document.getElementById(htmlElementID).textContent;
 
     // control for seconds max 59
@@ -238,9 +237,9 @@ function subtract(htmlElementID) {
 
         //reset
         defaultWorkDuration = parseInt(document.getElementById(workMinutesID).textContent) * 60000
-            + parseInt(document.getElementById(workSecondsID).textContent);
+            + parseInt(document.getElementById(workSecondsID).textContent)*1000;
         defaultBreakDuration = parseInt(document.getElementById(breakMinutesID).textContent) * 60000
-            + parseInt(document.getElementById(breakSecondsID).textContent);
+            + parseInt(document.getElementById(breakSecondsID).textContent)*1000;
 
         // reset canvas
         resetBackgroundCanvas();
