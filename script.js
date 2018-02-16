@@ -229,7 +229,8 @@ function subtract(htmlElementID) {
     /*This function subracts +1 unit to the HTML value inside the 
     HTML element. */
     let elementValue = document.getElementById(htmlElementID).textContent;
-    if (elementValue != 0) {
+    console.log((/minut/.test(htmlElementID) &&  elementValue != 0) );
+    if ((/minut/.test(htmlElementID) &&  elementValue != 0) || (/secon/.test(htmlElementID) &&  elementValue != 1)) {
         let result = elementValue;
         result--;
         result = addZeroToSingleDigitStr(result.toString());
