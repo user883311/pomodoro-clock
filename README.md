@@ -16,8 +16,8 @@ Idea for CSS animations:
 - add light theme, other colors
 
 Notes: I used a single-thread timer as a common reference for the several events.
- 
 
-GitHub Page: https://user883311.github.io/pomodoro-clock/
+
+Live on GitHub Page: https://user883311.github.io/pomodoro-clock/
 
 
